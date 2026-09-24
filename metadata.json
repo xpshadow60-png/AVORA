@@ -1,0 +1,6 @@
+{
+  "name": "Avora",
+  "description": "AI-Powered Technology Learning and Building Platform. Learn Technology, Build Technology, Become Future-Ready with specialized AI Technology Tutoring, Coding Mentor, and Project Engineering.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,18 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Only authenticated users can read, write, or delete their own data
+    match /users/{userId} {
+      allow read, write, delete: if request.auth != null && request.auth.uid == userId;
+
+      match /{subcollection}/{docId} {
+        allow read, write, delete: if request.auth != null && request.auth.uid == userId;
+      }
+    }
+    
+    // Deny all other unmatched access by default
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

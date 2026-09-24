@@ -1,0 +1,14 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Only authenticated users can access or delete their own uploaded assets
+    match /users/{userId}/{allPaths=**} {
+      allow read, write, delete: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Deny all other unmatched storage access
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}
